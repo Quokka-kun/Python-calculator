@@ -57,7 +57,15 @@ def evaluate(expression):
     except Exception as e:
         return f"Error: {e}"
 
-# Exemple d'utilisation
-expression = "2 + 4 * 2"
-result = evaluate(expression)
-print(result)  # Devrait afficher 10
+def main():
+    while True:
+        # Demander une entrée utilisateur
+        expression = input("Entrez une expression mathématique (ou 'exit' pour quitter) : ")
+        if expression.lower() == 'exit':
+            print("Au revoir!")
+            break
+        result = evaluate(expression)
+        print(f"Résultat : {result}")
+
+if __name__ == "__main__":
+    main()
