@@ -1,0 +1,65 @@
+def evaluer_expression(expression):
+    try:
+        # Evaluer l'expression
+        resultat = eval(expression)
+        return resultat
+    except Exception as e:
+        return f"Error : {e}"
+
+def afficher_details(expression):
+    print("Operation details :")
+    termes = expression.split()
+    operateur = ''
+    total = 0
+    if len(termes) < 3:
+        print("Erreur : Invalid expression")
+        return
+    try:
+        total = float(termes[0])
+        for i in range(1, len(termes), 2):
+            operateur = termes[i]
+            nombre = float(termes[i + 1])
+            if operateur == '+':
+                print(f"{total} + {nombre} = {total + nombre}")
+                total += nombre
+            elif operateur == '-':
+                print(f"{total} - {nombre} = {total - nombre}")
+                total -= nombre
+            elif operateur == '*':
+                print(f"{total} * {nombre} = {total * nombre}")
+                total *= nombre
+            elif operateur == '/':
+                if nombre == 0:
+                    print("Error : Division by zero")
+                    return
+                print(f"{total} / {nombre} = {total / nombre}")
+                total /= nombre
+            else:
+                print(f"No valid operator : {operateur}")
+                return
+    except ValueError:
+        print("Erreur : No valid expression")
+
+def main():
+    print("Yo, welcome to my first project, I've try to create a calculator with Python")
+    
+    while True:
+        # Demander à l'utilisateur d'entrer une expression
+        expression = input("Enter an expression (for example: 34 + 36 / 3 * 7)")
+        
+        # Permettre à l'utilisateur de quitter
+        if expression.lower() == 'e':
+            print("Thanks for using my calculator. Give feedback if you want to !")
+            break
+        
+        # Afficher les détails de l'opération
+        afficher_details(expression)
+        
+        # Evaluer l'expression
+        resultat = evaluer_expression(expression)
+        
+        # Afficher le résultat
+        print(f"The result is : {resultat}")
+
+if __name__ == "__main__":
+    main()
